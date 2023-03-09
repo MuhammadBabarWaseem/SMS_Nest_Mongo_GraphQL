@@ -1,13 +1,14 @@
+/* eslint-disable prettier/prettier */
 import { LessonService } from './lesson.service';
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { LessonType } from './lesson.type';
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 
-@Resolver((of) => LessonType)
+@Resolver(of => LessonType)
 export class LessonResolver {
   constructor(private lessonService: LessonService) {}
-  @Query((returns) => LessonType)
-  lesson() {
+  @Query(returns => LessonType)
+  async lesson() {
     return {
       id: 'any23id',
       name: 'Physics Class',
@@ -16,7 +17,7 @@ export class LessonResolver {
     };
   }
 
-  @Mutation((returns) => LessonType)
+  @Mutation(returns => LessonType)
   createLesson(
     @Args('name') name: string,
     @Args('startDate') startDate: string,
